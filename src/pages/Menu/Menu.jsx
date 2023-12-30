@@ -3,14 +3,28 @@ import { Helmet } from 'react-helmet-async';
 import Cover from '../Shared/Cover/Cover';
 
 import menuImg from '../../assets/menu/menu-bg.jpg'
-// import soupImg from '../../assets/menu/soup-bg.jpg'
-// import saladImg from '../../assets/menu/salad-bg.jpg'
-// import pizzaImg from '../../assets/menu/pizza-bg.jpg'
-// import dessertImg from '../../assets/menu/dessert-bg.jpeg'
-import PopularMenu from '../Home/PopularMenu/PopularMenu';
+import soupImg from '../../assets/menu/soup-bg.jpg'
+import saladImg from '../../assets/menu/salad-bg.jpg'
+import pizzaImg from '../../assets/menu/pizza-bg.jpg'
+import dessertImg from '../../assets/menu/dessert-bg.jpeg'
+
+
+import useMenu from '../../hooks/useMenu';
+import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import MenuCategory from './MenuCategory';
+
+
 
 
 const Menu = () => {
+    const [menu] = useMenu();
+    const desserts = menu?.filter(item => item.category === 'dessert');
+    const soup = menu?.filter(item => item.category === 'soup');
+    const salad = menu?.filter(item => item.category === 'salad');
+    const pizza = menu?.filter(item => item.category === 'pizza');
+    const offered = menu?.filter(item => item.category === 'offered');
+
+    console.log("offered : ", offered);
     return (
         <div>
             <Helmet>
@@ -19,23 +33,20 @@ const Menu = () => {
             </Helmet>
 
             <Cover img={menuImg} title="our menu"></Cover>
-            <PopularMenu></PopularMenu>
+            <SectionTitle subHeading="Don't Miss" heading="Today's Offer"></SectionTitle>
 
-            <Cover img={menuImg} title="our menu"></Cover>
-            <PopularMenu></PopularMenu>
+            <MenuCategory items={offered}></MenuCategory>
 
-            <Cover img={menuImg} title="our menu"></Cover>
-            <PopularMenu></PopularMenu>
+            <MenuCategory items={desserts} title="dessert" img={dessertImg}></MenuCategory>
 
-            <Cover img={menuImg} title="our menu"></Cover>
-            <PopularMenu></PopularMenu>
-
-            <Cover img={menuImg} title="our menu"></Cover>
-            <PopularMenu></PopularMenu>
+            <MenuCategory items={pizza} title={"pizza"} img={pizzaImg}></MenuCategory>
+            <MenuCategory items={salad} title={"salad"} img={saladImg}></MenuCategory>
+            <MenuCategory items={soup} title={"soup"} img={soupImg}></MenuCategory>
 
 
 
-            menu
+
+          
 
         </div>
     );
