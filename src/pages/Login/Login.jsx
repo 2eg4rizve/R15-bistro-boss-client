@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useContext } from "react";
-import { useEffect,  useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
@@ -17,7 +17,7 @@ import Swal from "sweetalert2";
 
 
 const Login = () => {
-    
+
     const [disabled, setDisabled] = useState(true);
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -118,7 +118,11 @@ const Login = () => {
 
                             <div className="form-control mt-6">
 
-                                <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
+                                {/* 
+                                 <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
+                                */}
+
+                                <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
                             </div>
 
                         </form>
