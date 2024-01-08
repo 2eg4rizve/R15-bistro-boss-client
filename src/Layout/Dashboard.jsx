@@ -1,11 +1,17 @@
 import { FaAd, FaBook, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
+import useAuth from "../hooks/useAuth";
 
 const Dashboard = () => {
     const [cart] = useCart();
 
-    const isAdmin = true;
+    const { user } = useAuth();
+
+    console.log("user email : ",user?.email);
+
+    const [isAdmin] = useAdmin();
 
     return (
         <div className="flex">
